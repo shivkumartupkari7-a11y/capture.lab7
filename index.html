@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>capture.lab7 | Photography</title>
+
+<style>
+:root {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --accent-color: #00e5ff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:var(--bg-color);
+    color:var(--text-color);
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    padding:60px 20px;
+}
+
+.profile-pic{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid var(--accent-color);
+    margin-bottom:15px;
+}
+
+h1{
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+.bio{
+    color:#ccc;
+    margin-bottom:25px;
+}
+
+.insta-btn{
+    display:inline-block;
+    padding:12px 30px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+    color:white;
+    transition:0.3s;
+}
+
+.insta-btn:hover{
+    transform:scale(1.05);
+}
+
+/* GALLERY */
+.gallery{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+    column-count:3;
+    column-gap:15px;
+}
+
+.gallery-item{
+    margin-bottom:15px;
+    break-inside:avoid;
+    border-radius:12px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.gallery-item img{
+    width:100%;
+    display:block;
+}
+
+.gallery-item:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.6);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .gallery{ column-count:2; }
+}
+
+@media(max-width:480px){
+    .gallery{ column-count:1; }
+}
+
+/* LIGHTBOX */
+.lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:80vh;
+    border-radius:10px;
+}
+
+.lightbox span{
+    position:absolute;
+    top:30px;
+    right:40px;
+    font-size:40px;
+    cursor:pointer;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=200&q=80" class="profile-pic">
+    <h1>capture.lab7</h1>
+    <p class="bio">Exploring nature, light & life 📷 | Nature & Portrait Photographer</p>
+    <a href="https://instagram.com/capture.lab7" target="_blank" class="insta-btn">Follow on Instagram</a>
+</header>
+
+<div class="gallery">
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=600&q=80"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=600&q=80"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=600&q=80"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <span onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img">
+</div>
+
+<footer>
+    © 2026 capture.lab7 | All Rights Reserved
+</footer>
+
+<script>
+const images = document.querySelectorAll(".gallery-item img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+images.forEach(img=>{
+    img.addEventListener("click",()=>{
+        lightbox.style.display="flex";
+        lightboxImg.src=img.src;
+    });
+});
+
+function closeLightbox(){
+    lightbox.style.display="none";
+}
+</script>
+
+</body>
+</html>
